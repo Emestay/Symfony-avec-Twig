@@ -1,12 +1,17 @@
 home:
-    path: /
-    controller: App\Controller\HomeController::index
-    
+  path: /
+  controller: App\Controller\HomeController::index
+
+
 
 article:
-    path: /article
-    controller: App\Controller\ArticleController::index
+  path: /article
+  controller: App\Controller\ArticleController::index
 
 ajouter:
-    path: /ajouter
-    controller: App\Controller\AjouterController::index
+  path: /ajouter
+  controller: App\Controller\AjouterController::index
+
+article_show:
+  path: /article/{id}
+  controller: App\Controller\ArticleController::show

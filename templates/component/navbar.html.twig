@@ -1,11 +1,13 @@
 {% set current_route = app.request.attributes.get('_route') %}
-<header>
-    <nav class="bg-gradient-to-r from-blue-500 to-indigo-600 py-4 shadow-md">
+<header class="bg-white shadow navbar transition-all duration-300">
+    <nav class="bg-gradient-to-r from-emerald-400 to-sky-400 text-white py-4 shadow-md z-50 ">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center">
                 <a href="{{ path('home') }}"
-                   class="text-white font-bold text-2xl tracking-wide hover:text-blue-300 transition duration-300">5th
-                    Symfony</a>
+                   class="text-white font-bold text-2xl tracking-wide hover:text-blue-300 transition duration-300">
+                    <img src="{{ asset('favicon.ico') }}" alt="Favicon" class="inline-block  w-6 h-6"/>
+                    5th Symfony
+                </a>
                 <div class="hidden md:flex items-center space-x-4">
 
                     <a href="{{ path('home') }}"
@@ -41,7 +43,6 @@
         border-bottom: #FFFFFF groove 2px;
     }
 
-
     nav {
         width: 100%;
         position: fixed;
@@ -50,4 +51,5 @@
     }
 
 </style>
+
 

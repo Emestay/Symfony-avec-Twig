@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.titre }}{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto mt-8">
+        <div class="flex flex-col md:flex-row">
+            <div class="md:w-1/2">
+                <img src="{{ article.imageUrl }}" alt="{{ article.titre }}" class="w-full h-64 object-cover mb-6">
+            </div>
+            <div class="md:w-1/2 md:pl-8">
+                <h2 class="text-2xl font-bold mb-4">{{ article.titre }}</h2>
+                <p class="mb-4">{{ article.description }}</p>
+                <div class="flex flex-col md:flex-row">
+                    <div class="w-full md:w-1/2">
+                        <p class="mt-4 text-gray-700">Couleurs : {{ article.couleurs }}</p>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <p class="mt-4 text-gray-700">Prix : {{ article.prix }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

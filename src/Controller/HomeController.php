@@ -25,6 +25,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'items' => $items,
             'welcome_message' => $message,
+
         ]);
     }
     private function getWelcomeMessage(): string
