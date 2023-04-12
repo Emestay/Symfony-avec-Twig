@@ -1,0 +1,12 @@
+home:
+    path: /
+    controller: App\Controller\HomeController::index
+    
+
+article:
+    path: /article
+    controller: App\Controller\ArticleController::index
+
+ajouter:
+    path: /ajouter
+    controller: App\Controller\AjouterController::index
