@@ -1,27 +1,30 @@
+{% set current_route = app.request.attributes.get('_route') %}
 <header>
-    <nav class="bg-gradient-to-r from-blue-500 to-indigo-600 py-4">
+    <nav class="bg-gradient-to-r from-blue-500 to-indigo-600 py-4 shadow-md">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center">
-                <a href="{{ path('home') }}" class="text-white font-bold text-2xl tracking-wide">5th Symfony</a>
+                <a href="{{ path('home') }}"
+                   class="text-white font-bold text-2xl tracking-wide hover:text-blue-300 transition duration-300">5th
+                    Symfony</a>
                 <div class="hidden md:flex items-center space-x-4">
+
                     <a href="{{ path('home') }}"
-                       class="text-white font-semibold text-lg uppercase hover:text-blue-300 transition duration-300 px-2 py-1 rounded-md">Home</a>
+                       class="text-white font-semibold text-lg uppercase hover:text-blue-300 transition duration-300 px-2 py-1 {% if current_route == 'home' %}active{% endif %}">Home</a>
                     <a href="{{ path('article') }}"
-                       class="text-white font-semibold text-lg uppercase hover:text-blue-300 transition duration-300 px-2 py-1 rounded-md">Article</a>
+                       class="text-white font-semibold text-lg uppercase hover:text-blue-300 transition duration-300 px-2 py-1  {% if current_route == 'article' %}active{% endif %}">Article</a>
                     <a href="{{ path('ajouter') }}"
-                       class="text-white font-semibold text-lg uppercase hover:text-blue-300 transition duration-300 px-2 py-1 rounded-md">Ajouter</a>
+                       class="text-white font-semibold text-lg uppercase hover:text-blue-300 transition duration-300 px-2 py-1  {% if current_route == 'ajouter' %}active{% endif %}">Ajouter</a>
                 </div>
                 <div class="hidden md:flex items-center">
                     <a href=""
                        class="text-white font-semibold text-lg uppercase bg-blue-300 hover:bg-blue-400 transition duration-300 px-4 py-2 rounded-md flex items-center space-x-2">
-
                         <span>Connexion</span>
                     </a>
                 </div>
                 <div class="md:hidden flex items-center">
                     <button class="text-white focus:outline-none focus:text-blue-300 transition duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                             width="24" height="24">
+                             width="28" height="28">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                   d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
@@ -31,3 +34,20 @@
         </div>
     </nav>
 </header>
+
+
+<style>
+    .active {
+        border-bottom: #FFFFFF groove 2px;
+    }
+
+
+    nav {
+        width: 100%;
+        position: fixed;
+        top: 0;
+
+    }
+
+</style>
+
