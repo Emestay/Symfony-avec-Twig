@@ -39,7 +39,7 @@ class ArticleController extends AbstractController
      */
     public function getArticles(): array
     {
-        $articles = [
+        return [
             [
                 'titre' => 'Pack de 8 T-shirts Basiques',
                 'description' => 'Obtenez la gamme complète de nos T-shirts basiques. Ayez un nouveau t-shirt toute la semaine et un supplémentaire pour le jour de lessive.',
@@ -76,6 +76,5 @@ class ArticleController extends AbstractController
                 'imageUrl' => 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-05.jpg'
             ]
         ];
-        return $articles;
     }
 }

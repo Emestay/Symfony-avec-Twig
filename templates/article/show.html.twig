@@ -17,29 +17,35 @@
             transform: scale(1.03);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
         }
+        .truc{
+            display: grid;
+            place-self: center ;
+        }
     </style>
 {% endblock %}
 
 {% block body %}
-    <div class="container mx-auto mt-8">
+    <section class="truc">
+    <div class="container mx-auto mt-8 ">
         <div class="article-container">
-            <div class="flex flex-col md:flex-row   p-6 rounded-lg max-w-4xl w-full article-card">
+            <div class="flex flex-col md:flex-row p-6 rounded-lg max-w-4xl w-full article-card">
                 <div class="md:w-1/2">
-                    <img src="{{ article.imageUrl }}" alt="{{ article.titre }}" class="w-full h-80 object-cover mb-6 rounded">
+                    <img src="{{ article.imageUrl }}" alt="{{ article.titre }}" class="w-full h-full object-cover mb-6 rounded">
                 </div>
-                <div class="md:w-1/2 md:pl-8">
-                    <h2 class="text-3xl font-bold mb-4">{{ article.titre }}</h2>
-                    <p class="mb-4 text-lg">{{ article.description }}</p>
+                <div class="md:w-1/2 md:pl-8 flex flex-col justify-center">
+                    <h2 class="text-4xl font-bold mb-4 text-center">{{ article.titre }}</h2>
+                    <p class="mb-4 text-lg text-center">{{ article.description }}</p>
                     <div class="flex flex-col md:flex-row">
                         <div class="w-full md:w-1/2">
-                            <p class="mt-4 text-gray-700 text-lg">Couleurs : {{ article.couleurs }}</p>
+                            <p class="mt-4 text-gray-700 text-lg text-center">Couleurs : {{ article.couleurs }}</p>
                         </div>
                         <div class="w-full md:w-1/2">
-                            <p class="mt-4 text-gray-700 text-lg">Prix : {{ article.prix }}</p>
+                            <p class="mt-4 text-gray-700 text-lg text-center">Prix : {{ article.prix }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </section>
 {% endblock %}
