@@ -2,21 +2,41 @@
 
 {% block title %}{{ article.titre }}{% endblock %}
 
+{% block styles %}
+    <style>
+        .article-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+        .article-card {
+            transition: transform 0.3s ease;
+        }
+        .article-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
     <div class="container mx-auto mt-8">
-        <div class="flex flex-col md:flex-row">
-            <div class="md:w-1/2">
-                <img src="{{ article.imageUrl }}" alt="{{ article.titre }}" class="w-full h-64 object-cover mb-6">
-            </div>
-            <div class="md:w-1/2 md:pl-8">
-                <h2 class="text-2xl font-bold mb-4">{{ article.titre }}</h2>
-                <p class="mb-4">{{ article.description }}</p>
-                <div class="flex flex-col md:flex-row">
-                    <div class="w-full md:w-1/2">
-                        <p class="mt-4 text-gray-700">Couleurs : {{ article.couleurs }}</p>
-                    </div>
-                    <div class="w-full md:w-1/2">
-                        <p class="mt-4 text-gray-700">Prix : {{ article.prix }}</p>
+        <div class="article-container">
+            <div class="flex flex-col md:flex-row   p-6 rounded-lg max-w-4xl w-full article-card">
+                <div class="md:w-1/2">
+                    <img src="{{ article.imageUrl }}" alt="{{ article.titre }}" class="w-full h-80 object-cover mb-6 rounded">
+                </div>
+                <div class="md:w-1/2 md:pl-8">
+                    <h2 class="text-3xl font-bold mb-4">{{ article.titre }}</h2>
+                    <p class="mb-4 text-lg">{{ article.description }}</p>
+                    <div class="flex flex-col md:flex-row">
+                        <div class="w-full md:w-1/2">
+                            <p class="mt-4 text-gray-700 text-lg">Couleurs : {{ article.couleurs }}</p>
+                        </div>
+                        <div class="w-full md:w-1/2">
+                            <p class="mt-4 text-gray-700 text-lg">Prix : {{ article.prix }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
