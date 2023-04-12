@@ -4,8 +4,8 @@ home:
 
 
 
-article:
-  path: /article
+article_index:
+  path: /articles
   controller: App\Controller\ArticleController::index
 
 ajouter:
