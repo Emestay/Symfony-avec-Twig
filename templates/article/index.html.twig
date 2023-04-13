@@ -3,35 +3,86 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-<div class="bg-gradient-to-r from-gray-200 to-yellow-200 min-h-screen">
+    <div class="bg-gradient-to-r from-gray-200 to-yellow-200 min-h-screen">
     <div class="max-w-2xl mx-auto py-4 px-4 sm:py-10 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 class="text-4xl text-center text-white font-black tracking-tight sm:text-5xl bg-clip-text mb-6">
             <span class="hover-border uppercase text-sky-400/100 opacity-100 font-bold">Article</span>
         </h2>
         <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
             {% for article in articles %}
-            <div class="group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden">
-                <div class="aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96">
-                    <img src="{{ article.imageUrl }}"
-                         alt="{{ article.titre }}"
-                         class="w-full h-full object-center object-cover sm:w-full sm:h-full">
-                </div>
-                <div class="flex-1 p-4 space-y-2 flex flex-col">
-                    <h3 class="text-sm font-medium text-gray-900">
-                        <a href="{{ path('article_show', { 'id': article.id }) }}">
-                            <span aria-hidden="true" class="absolute inset-0"></span>
-                            {{ article.titre }}
-                        </a>
-                    </h3>
-                    <p class="text-sm text-gray-500">{{ article.description }}</p>
-                    <div class="flex-1 flex flex-col justify-end">
-                        <p class="text-sm italic text-gray-500">{{ article.couleurs }}</p>
-                        <p class="text-base font-medium text-gray-900">{{ article.prix }}€</p>
+                <div class="group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden">
+                    <div class="aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96">
+                        <img src="{{ article.imageUrl }}"
+                             alt="{{ article.titre }}"
+                             class="w-full h-full object-center object-cover sm:w-full sm:h-full">
+                    </div>
+                    <div class="flex-1 p-4 space-y-2 flex flex-col">
+                        <h3 class="text-sm font-medium text-gray-900">
+                            <a href="{{ path('article_show', { 'id': article.id }) }}">
+                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                {{ article.titre }}
+                            </a>
+                        </h3>
+                        <p class="text-sm text-gray-500">{{ article.description }}</p>
+                        <div class="flex-1 flex flex-col justify-end">
+                            <p class="text-sm italic text-gray-500">{{ article.couleurs }}</p>
+                            <p class="text-base font-medium text-gray-900">{{ article.prix }}€</p>
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
     </div>
-</div>
+
+    <script>
+        function ajouterNote() {
+            const noteList = document.getElementById("noteList");
+            const noteValue = document.getElementById("noteInput").value;
+            if (noteValue !== "") {
+                const newNote = document.createElement("span");
+                newNote.className = "note mt-5 text-xl font-semibold";
+                newNote.innerText = noteValue + ", ";
+                noteList.appendChild(newNote);
+                document.getElementById("noteInput").value = "";
+            }
+        }
+
+        function calculerMoyenne() {
+            const notes = document.getElementsByClassName("note");
+            let somme = 0;
+            let nombreDeNotes = 0;
+
+            for (let note of notes) {
+                const noteValue = parseFloat(note.innerText);
+                if (!isNaN(noteValue)) {
+                    somme += noteValue;
+                    nombreDeNotes++;
+                }
+            }
+            const moyenne = somme / nombreDeNotes;
+            document.getElementById("moyenne").innerText = "La moyenne des notes est : " + moyenne.toFixed(2);
+        }
+    </script>
+
+    <div class="min-h-screen  py-6 flex flex-col justify-center sm:py-12">
+        <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+            <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+            <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+                <h1 class="text-2xl font-semibold mb-5">Calculatrice de moyenne</h1>
+                <div>
+                    <input type="number" id="noteInput" class="p-2 border border-gray-300 rounded">
+                    <br>
+                </div>
+                <div id="noteList" class="mt-5"></div>
+                <button onclick="ajouterNote()"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mt-5">Ajouter
+                    une note
+                </button>
+                <button onclick="calculerMoyenne()"
+                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5">Moyenne
+                </button>
+                <p id="moyenne" class="mt-5 text-xl font-semibold"></p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
