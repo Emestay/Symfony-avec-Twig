@@ -1,7 +1,9 @@
 home:
   path: /
   controller: App\Controller\HomeController::index
-
+panier:
+  path: /panier
+  controller: App\Controller\PanierController::index
 
 
 article_index:

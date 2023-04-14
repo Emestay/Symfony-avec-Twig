@@ -20,15 +20,19 @@ class ArticleController extends AbstractController
     {
         $article = $this->repoArticle->find($id);
 
+
+        $user = $article->getUser();
+
         return $this->render('article/show.html.twig', [
-            'article' => $article
+            'article' => $article,
+            'user' => $user,
         ]);
     }
 
 
-    public function index(): Response
+    public function index(ArticleRepository $repoArticle): Response
     {
-        $articles = $this->repoArticle->findAll();
+        $articles = $repoArticle->findAll();
 
         return $this->render('article/index.html.twig', [
             'articles' => $articles

@@ -8,7 +8,7 @@
                     <img src="{{ asset('favicon.ico') }}" alt="Favicon" class="inline-block  w-6 h-6"/>
                     5th Symfony
                 </a>
-                <div class="hidden md:flex items-center space-x-4">
+                <div class="hidden md:flex items-center  space-x-4">
 
                     <a href="{{ path('home') }}"
                        class="text-white font-semibold text-lg uppercase hover:text-yellow-200 transition-colors duration-300 ease-in-out px-2 py-1 {% if current_route == 'home' %}active{% endif %}">Home</a>
@@ -16,6 +16,19 @@
                        class="text-white font-semibold text-lg uppercase hover:text-yellow-200 transition-colors duration-300 ease-in-out px-2 py-1  {% if current_route in ['article_index', 'article_show'] %}active{% endif %}">Article</a>
                     <a href="{{ path('ajouter') }}"
                        class="text-white font-semibold text-lg uppercase hover:text-yellow-200 transition-colors duration-300 ease-in-out px-2 py-1  {% if current_route == 'ajouter' %}active{% endif %}">Ajouter</a>
+                    <div class="group relative">
+                        <a href="{{ path('panier') }}"
+                           class="text-white font-semibold text-lg uppercase hover:text-yellow-200 transition-colors duration-300 ease-in-out px-2 py-1  {% if current_route == 'cart' %}active{% endif %} flex items-center space-x-2">
+                            <i class="fas fa-shopping-cart w-6 h-6"></i>
+                        </a>
+                        <div class="absolute left-0 mt-2 w-64 bg-white text-black  shadow-xl z-10 hidden group-hover:block">
+                            <div class="p-4">
+                                <!-- voila je met des trucs -->
+                                <p>La main au panier.</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="hidden md:flex items-center">
                     <a href=""
@@ -41,7 +54,9 @@
 <style>
     .active {
         border-bottom: #FFFFFF solid 2px;
-    }.active:hover {
+    }
+
+    .active:hover {
         border-bottom: #fef08a solid 2px;
     }
 
