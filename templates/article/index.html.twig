@@ -3,6 +3,12 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="bg-gradient-to-r from-gray-200 to-yellow-200 min-h-screen">
     <div class="max-w-2xl mx-auto py-4 px-4 sm:py-10 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 class="text-4xl text-center text-white font-black tracking-tight sm:text-5xl bg-clip-text mb-6">
@@ -10,18 +16,23 @@
         </h2>
         <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
             {% for article in articles %}
+
                 <div class="group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden">
+
                     <div class="aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96">
                         <img src="{{ article.imageUrl }}"
                              alt="{{ article.titre }}"
                              class="w-full h-full object-center object-cover sm:w-full sm:h-full">
+
                     </div>
+
                     <div class="flex-1 p-4 space-y-2 flex flex-col">
                         <h3 class="text-sm font-medium text-gray-900">
-                            <a href="{{ path('article_show', { 'id': article.id }) }}">
+                            {#  <a href="{{ path('article_show', { 'id': article.id }) }}">
                                 <span aria-hidden="true" class="absolute inset-0"></span>
                                 {{ article.titre }}
                             </a>
+                            #}
                         </h3>
                         <p class="text-sm text-gray-500">{{ article.description }}</p>
                         <div class="flex-1 flex flex-col justify-end">
@@ -30,6 +41,9 @@
                             {% if article.user is not null %}
                                 <p class="text-base font-medium text-gray-900">{{ article.user.nom }} </p>
                                 <p class="text-base font-medium text-gray-900">{{ article.user.prenom }} </p>
+                                <form action="{{ path('panier_add', { 'id': article.id }) }}" method="POST">
+                                    <button type="submit" class="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded mt-5">Mézi meleu</button>
+                                </form>
                             {% endif %}
                         </div>
                     </div>
@@ -39,6 +53,7 @@
     </div>
 
     <script>
+
         function ajouterNote() {
             const noteList = document.getElementById("noteList");
             const noteValue = document.getElementById("noteInput").value;
