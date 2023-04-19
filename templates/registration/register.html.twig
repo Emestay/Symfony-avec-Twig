@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <div class="bg-gradient-to-r from-gray-200 to-yellow-200 min-h-screen">
+        <div class="container mx-auto px-4 py-12">
+            <h2 class="text-4xl text-center text-white font-black tracking-tight sm:text-5xl bg-clip-text mb-6">
+                <span class="hover-border uppercase text-sky-400/100 opacity-100 font-bold">Inscription</span>
+            </h2>
+
+            <div class="w-full max-w-md mx-auto">
+                {% for flash_error in app.flashes('verify_email_error') %}
+                    <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                {% endfor %}
+                <form method="post"
+                      class="bg-white/70 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    {{ form_start(registrationForm) }}
+                    <div class="mb-6">
+                        <label for="{{ registrationForm.email.vars.id }}"
+                               class="block text-sky-400/100 text-sm font-bold mb-2">Email:</label>
+                        {{ form_widget(registrationForm.email, {
+                            'attr': {
+                                'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                            }
+                        }) }}
+                    </div>
+                    <div class="mb-6">
+                        <label for="{{ registrationForm.plainPassword.vars.id }}"
+                               class="block text-sky-400/100 text-sm font-bold mb-2">Mot de passe:</label>
+                        {{ form_widget(registrationForm.plainPassword, {
+                            'attr': {
+                                'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                            },
+                            'label': 'Password'
+                        }) }}
+                    </div>
+                    <div class="mb-8 flex items-center">
+                        {{ form_widget(registrationForm.agreeTerms, {
+                            'attr': {
+                                'class': 'form-checkbox h-5 w-5 text-sky-400 rounded focus:ring-sky-400 focus:outline-none focus:border-sky-400'
+                            }
+                        }) }}
+                        <label for="{{ registrationForm.agreeTerms.vars.id }}"
+                               class="text-sky-400/100 text-sm font-bold ml-2">Accepter les conditions</label>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <button type="submit"
+                                class="rounded-xl bg-gradient-to-r from-emerald-400 to-sky-400 px-5 py-3 text-base font-medium text-white transition duration-200 hover:border-amber-200 border-2 border-white hover:text-yellow-200 transition-colors duration-300 ease-in-out">
+                            S'inscrire
+                        </button>
+                    </div>
+                    {{ form_end(registrationForm) }}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
